@@ -170,3 +170,9 @@ int popFront(int _queue[])
 		return retVal;
 	}
 }
+
+
+// 10.1-4. Írjuk meg a Sorba és a Sorb ´ol m˝uveleteket úgy, hogy szerepeljen bennük az alulcsordulás
+// és túlcsordulás vizsgálata.
+
+
