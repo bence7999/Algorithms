@@ -22,3 +22,10 @@ int popSecond(int _stack[]);
 void pushBack(int _queue[], int _element);
 int popFront(int _queue[]);
 
+// Task 04
+
+// Task 05
+void pushDeqFront(int _deq[], int _element);
+void pushDeqBack(int _deq[], int _element);
+int popDeqFront(int _deq[]);
+int popDeqBack(int _deq[]);

@@ -175,4 +175,95 @@ int popFront(int _queue[])
 // 10.1-4. Írjuk meg a Sorba és a Sorb ´ol m˝uveleteket úgy, hogy szerepeljen bennük az alulcsordulás
 // és túlcsordulás vizsgálata.
 
+// 10.1-5. Amint láttuk, a veremnek csak az egyik végén lehet elemet beszúrni és törölni, a
+// sornak pedig az egyik végén lehet elemet beszúrni és a másik végén lehet törölni. Ezzel
+// szemben a kétvég˝u sor mindkét végén lehet elemet beszúrni is, és törölni is. Írjunk négy
+// olyan O(1) idej˝u eljárást, amelyek megvalósítják a beszúrás és törlés m˝uveleteit egy tömbbel
+// ábrázolt kétvég˝u sor mindkét végén.
+
+int _headDeQueue = 0;
+int _tailDeQueue = 0;
+int _sizeDeQueue = 0;
+
+void pushDeqFront(int _deq[], int _element) 
+{
+	if (_sizeDeQueue == MAX01)
+	{
+		// overFlow
+	}
+	else
+	{
+		_deq[_headDeQueue] = _element;
+		if (_sizeDeQueue == 0 && _tailDeQueue == 0)
+		{
+			_headDeQueue = MAX01 - 1;
+			_tailDeQueue++;
+		}
+		else if (_headDeQueue == 0)
+			_headDeQueue = MAX01 - 1;
+		else
+			_headDeQueue--;
+		_sizeDeQueue++;
+	}
+}
+
+void pushDeqBack(int _deq[], int _element)
+{
+	if (_sizeDeQueue == MAX01)
+	{
+		// overFlow
+	}
+	else
+	{
+		_deq[_tailDeQueue] = _element;
+		if (_sizeDeQueue == 0 && _headDeQueue == 0)
+		{
+			_tailDeQueue++;
+			_headDeQueue = MAX01 - 1;
+		}
+		else if (_tailDeQueue == MAX01 - 1)
+			_tailDeQueue = 0;
+		else
+			_tailDeQueue++;
+		_sizeDeQueue++;
+	}
+}
+
+int popDeqFront(int _deq[])
+{
+	if (_sizeDeQueue == 0)
+	{
+		// underFlow
+		return -1;
+	}
+	else
+	{
+		int retVal = _deq[_headDeQueue];
+		if (_headDeQueue == MAX01 - 1)
+			_headDeQueue = 0;
+		else
+			_headDeQueue++;
+		_sizeDeQueue--;
+		return retVal;
+	}
+}
+
+int popDeqBack(int _deq[])
+{
+	if (_sizeDeQueue == 0)
+	{
+		// underFlow
+		return -1;
+	}
+	else
+	{
+		int retVal = _deq[_tailDeQueue];
+		if (_tailDeQueue == 0)
+			_tailDeQueue = MAX01 - 1;
+		else
+			_tailDeQueue--;
+		_sizeDeQueue--;
+		return retVal;
+	}
+}
 
