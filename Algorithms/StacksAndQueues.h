@@ -18,4 +18,7 @@ void pushSecond(int _stack[], int _element);
 int popFirst(int _stack[]);
 int popSecond(int _stack[]);
 
+// Task 03
+void pushBack(int _queue[], int _element);
+int popFront(int _queue[]);
 

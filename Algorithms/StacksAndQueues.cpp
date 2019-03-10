@@ -97,7 +97,6 @@ void pushSecond(int _stack[], int _element)
 	}
 }
 
-
 int popFirst(int _stack[])
 {
 	if (!isEmptyFirst())
@@ -125,5 +124,49 @@ int popSecond(int _stack[])
 	{
 		// underFlow
 		return -1;
+	}
+}
+
+// 10.1-3. A 10.2. ábrán bemutatott modell felhasználásával szemléltessük a Sorba(S, 4),
+// Sorba(S, 1), Sorba(S, 3), Sorb ´ol(S), Sorba(S, 8) és Sorb ´ol(S) m˝uveletek mindegyikének
+// a végrehajtását, ha a sort a S[1 . . 6] tömbben tároljuk, és a sor kezdetben üres.
+
+int _headQueue = 0;
+int _tailQueue = 0;
+int _sizeQueue = 0;
+
+void pushBack(int _queue[], int _element) 
+{
+	if (_sizeQueue == MAX01)
+	{
+		// overFlow
+	}
+	else
+	{
+		_queue[_tailQueue] = _element;
+		if (_tailQueue == MAX01 - 1)
+			_tailQueue = 0;
+		else
+			_tailQueue++;
+		_sizeQueue++;
+	}
+}
+
+int popFront(int _queue[]) 
+{
+	if (_sizeQueue == 0)
+	{
+		// underFlow
+		return -1;
+	}
+	else
+	{
+		int retVal = _queue[_headQueue];
+		if (_headQueue == MAX01 - 1)
+			_headQueue = 0;
+		else
+			_headQueue++;
+		_sizeQueue--;
+		return retVal;
 	}
 }
