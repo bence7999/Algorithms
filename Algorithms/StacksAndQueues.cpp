@@ -4,22 +4,20 @@
 // Verembe(V, 1), Verembe(V, 3), Veremb ˝ol(V), Verembe(V, 8) és Veremb˝ol(V) m˝uveletek
 // mindegyikének a végrehajtását, ha a vermet a V[1 . . 6] tömbben tároljuk, és a verem kezdetben üres.
 
-int _head = 0;
-
-bool isEmpty()
+bool Stack::isEmpty()
 {
-	if (_head == 0)
+	if (*head == 0)
 		return true;
 	else
 		return false;
 }
 
-void push(int _stack[], int _element)
+void Stack::push(int _element)
 {
-	if (_head < MAX01)
+	if (*head < MAX01)
 	{
-		_stack[_head] = _element;
-		++_head;
+		*head = _element;
+		head++;
 	}
 	else
 	{
@@ -27,14 +25,14 @@ void push(int _stack[], int _element)
 	}
 }
 
-int pop(int _stack[])
+int Stack::pop()
 {
 	if (isEmpty())
 		return -1;
 	else
 	{
-		int _localHead = _stack[_head];
-		--_head;
+		int _localHead = *head;
+		head--; 
 		return _localHead;
 	}
 }
@@ -43,39 +41,36 @@ int pop(int _stack[])
 // sem csordul túl addig, amíg együttes elemszámuk nem haladja meg az n - et ? A Verembe
 // és Veremb˝ol m˝uveletek végrehajtási ideje maradjon O(1).
 
-int _headFirst = 0;
-int _headSecond = MAX02;
-
-bool isEmptyFirst() 
+bool DoubleStack::isEmptyFirst()
 {
-	if (_headFirst == 0)
+	if (*headFirst == 0)
 		return true;
 	else
 		return false;
 }
 
-bool isEmptySecond()
+bool DoubleStack::isEmptySecond()
 {
-	if (_headSecond == MAX02)
+	if (*headSecond == MAX02)
 		return true;
 	else
 		return false;
 }
 
-bool isFull()
+bool DoubleStack::isFull()
 {
-	if (_headFirst == _headSecond)
+	if (*headFirst == *headSecond)
 		return true;
 	else
 		return false;
 }
 
-void pushFirst(int _stack[], int _element)
+void DoubleStack::pushFirst(int _element)
 {
 	if (!isFull())
 	{
-		_stack[_headFirst] = _element;
-		++_headFirst;
+		*headFirst = _element;
+		headFirst++;
 	}
 	else
 	{
@@ -84,12 +79,12 @@ void pushFirst(int _stack[], int _element)
 		
 }
 
-void pushSecond(int _stack[], int _element)
+void DoubleStack::pushSecond(int _element)
 {
 	if (!isFull())
 	{
-		--_headSecond;
-		_stack[_headSecond] = _element;
+		headSecond--;
+		*headSecond = _element;
 	}
 	else
 	{
@@ -97,12 +92,12 @@ void pushSecond(int _stack[], int _element)
 	}
 }
 
-int popFirst(int _stack[])
+int DoubleStack::popFirst()
 {
 	if (!isEmptyFirst())
 	{
-		int retVal = _stack[_headFirst];
-		--_headFirst;
+		int retVal = *headFirst;
+		headFirst--;
 		return retVal;
 	}
 	else
@@ -112,12 +107,12 @@ int popFirst(int _stack[])
 	}
 }
 
-int popSecond(int _stack[])
+int DoubleStack::popSecond()
 {
 	if (!isEmptySecond())
 	{
-		int retVal = _stack[_headSecond];
-		++_headSecond;
+		int retVal = *headSecond;
+		headSecond++;
 		return retVal;
 	}
 	else
@@ -266,4 +261,7 @@ int popDeqBack(int _deq[])
 		return retVal;
 	}
 }
+
+// 10.1-6. Adjuk meg a sor megvalósítását két verem felhasználásával. Elemezzük a sor m˝uveleteinek
+// a végrehajtási idejét.
 
