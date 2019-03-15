@@ -10,12 +10,14 @@
 class Stack
 {
 private:
-	std::vector<int> stack[MAX01];
-	std::vector<int>::iterator head = stack->begin();
+	std::vector<int> stack;
+	std::vector<int>::iterator head;
 public:
+	Stack();
 	bool isEmpty();
 	void push(int _element);
 	int pop();
+	int top();
 
 };
 
@@ -23,10 +25,11 @@ public:
 class DoubleStack
 {
 private:
-	std::vector<int> doubleStack[MAX02];
-	std::vector<int>::iterator headFirst = doubleStack->begin();
-	std::vector<int>::iterator headSecond = doubleStack->end();
+	std::vector<int> doubleStack;
+	std::vector<int>::iterator headFirst;
+	std::vector<int>::iterator headSecond;
 public:
+	DoubleStack();
 	bool isEmptyFirst();
 	bool isEmptySecond();
 	bool isFull();
@@ -34,6 +37,8 @@ public:
 	void pushSecond(int _element);
 	int popFirst();
 	int popSecond();
+	int topFirst();
+	int topSecond();
 
 };
 

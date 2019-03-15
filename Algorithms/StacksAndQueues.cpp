@@ -1,12 +1,16 @@
 ﻿#include "StacksAndQueues.h"
 
-// 10.1-1 A ábrán bemutatott modell felhasználásával szemléltessük a Verembe(V,4),
-// Verembe(V, 1), Verembe(V, 3), Veremb ˝ol(V), Verembe(V, 8) és Veremb˝ol(V) m˝uveletek
-// mindegyikének a végrehajtását, ha a vermet a V[1 . . 6] tömbben tároljuk, és a verem kezdetben üres.
+// Task 01
+
+Stack::Stack()
+{
+	stack = std::vector<int>(MAX01);
+	head = stack.begin();
+}
 
 bool Stack::isEmpty()
 {
-	if (*head == 0)
+	if (head == stack.begin())
 		return true;
 	else
 		return false;
@@ -14,7 +18,7 @@ bool Stack::isEmpty()
 
 void Stack::push(int _element)
 {
-	if (*head < MAX01)
+	if (head != stack.end())
 	{
 		*head = _element;
 		head++;
@@ -31,19 +35,36 @@ int Stack::pop()
 		return -1;
 	else
 	{
-		int _localHead = *head;
+		int _localHead = *(head-1);
 		head--; 
 		return _localHead;
 	}
 }
 
-// 10.1-2 Hogyan valósítható meg két verem egyetlen A[1 . . n] tömbben úgy, hogy egyik verem
-// sem csordul túl addig, amíg együttes elemszámuk nem haladja meg az n - et ? A Verembe
-// és Veremb˝ol m˝uveletek végrehajtási ideje maradjon O(1).
+int Stack::top()
+{
+	if (isEmpty())
+	{
+		return -1;
+	}
+	else
+	{
+		return *(head-1);
+	}
+}
+
+// Task 02
+
+DoubleStack::DoubleStack()
+{
+	doubleStack = std::vector<int>(MAX02);
+	headFirst = doubleStack.begin();
+	headSecond = doubleStack.end();
+}
 
 bool DoubleStack::isEmptyFirst()
 {
-	if (*headFirst == 0)
+	if (headFirst == doubleStack.begin())
 		return true;
 	else
 		return false;
@@ -51,7 +72,7 @@ bool DoubleStack::isEmptyFirst()
 
 bool DoubleStack::isEmptySecond()
 {
-	if (*headSecond == MAX02)
+	if (headSecond == doubleStack.end())
 		return true;
 	else
 		return false;
@@ -59,7 +80,7 @@ bool DoubleStack::isEmptySecond()
 
 bool DoubleStack::isFull()
 {
-	if (*headFirst == *headSecond)
+	if (headFirst == headSecond)
 		return true;
 	else
 		return false;
@@ -96,7 +117,7 @@ int DoubleStack::popFirst()
 {
 	if (!isEmptyFirst())
 	{
-		int retVal = *headFirst;
+		int retVal = *(headFirst-1);
 		headFirst--;
 		return retVal;
 	}
@@ -119,6 +140,30 @@ int DoubleStack::popSecond()
 	{
 		// underFlow
 		return -1;
+	}
+}
+
+int DoubleStack::topFirst()
+{
+	if (isEmptyFirst())
+	{
+		return -1;
+	}
+	else
+	{
+		return *(headFirst - 1);
+	}
+}
+
+int DoubleStack::topSecond()
+{
+	if (isEmptySecond())
+	{
+		return -1;
+	}
+	else
+	{
+		return *headSecond;
 	}
 }
 
