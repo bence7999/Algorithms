@@ -43,8 +43,21 @@ public:
 };
 
 // Task 03
-void pushBack(int _queue[], int _element);
-int popFront(int _queue[]);
+
+class Queue
+{
+private:
+	std::vector<int> queue;
+	std::vector<int>::iterator front;
+	std::vector<int>::iterator back;
+	bool isFull();
+	int length = 0;
+public:
+	Queue();
+	void pushBack(int _element);
+	int popFront();
+	bool isEmpty();
+};
 
 // Task 04
 

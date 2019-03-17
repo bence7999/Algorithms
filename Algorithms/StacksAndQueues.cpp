@@ -167,50 +167,66 @@ int DoubleStack::topSecond()
 	}
 }
 
-// 10.1-3. A 10.2. ábrán bemutatott modell felhasználásával szemléltessük a Sorba(S, 4),
-// Sorba(S, 1), Sorba(S, 3), Sorb ´ol(S), Sorba(S, 8) és Sorb ´ol(S) m˝uveletek mindegyikének
-// a végrehajtását, ha a sort a S[1 . . 6] tömbben tároljuk, és a sor kezdetben üres.
+// Task 03
 
-int _headQueue = 0;
-int _tailQueue = 0;
-int _sizeQueue = 0;
-
-void pushBack(int _queue[], int _element) 
+Queue::Queue()
 {
-	if (_sizeQueue == MAX01)
+	queue = std::vector<int>(MAX01);
+	front = queue.begin();
+	back = queue.begin();
+}
+
+void Queue::pushBack(int _element) 
+{
+	if (isFull())
 	{
 		// overFlow
 	}
 	else
 	{
-		_queue[_tailQueue] = _element;
-		if (_tailQueue == MAX01 - 1)
-			_tailQueue = 0;
-		else
-			_tailQueue++;
-		_sizeQueue++;
+		if (back == queue.end())
+			back = queue.begin();
+		*back = _element;
+		length++;
+		back++;
 	}
+	
 }
 
-int popFront(int _queue[]) 
+int Queue::popFront()
 {
-	if (_sizeQueue == 0)
+	if (isEmpty())
 	{
 		// underFlow
 		return -1;
 	}
 	else
 	{
-		int retVal = _queue[_headQueue];
-		if (_headQueue == MAX01 - 1)
-			_headQueue = 0;
+		int retVal = *front;
+		if (front == (queue.end() - 1))
+			front = queue.begin();
 		else
-			_headQueue++;
-		_sizeQueue--;
+			front++;
+		length--;
 		return retVal;
 	}
 }
 
+bool Queue::isEmpty()
+{
+	if (front == back && length == 0)
+		return true;
+	else
+		return false;
+}
+
+bool Queue::isFull()
+{
+	if (length == MAX01)
+		return true;
+	else
+		return false;
+}
 
 // 10.1-4. Írjuk meg a Sorba és a Sorb ´ol m˝uveleteket úgy, hogy szerepeljen bennük az alulcsordulás
 // és túlcsordulás vizsgálata.

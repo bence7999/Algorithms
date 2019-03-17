@@ -204,3 +204,78 @@ TEST_CASE("DoubleStack 04")
 	REQUIRE(ds.topSecond() == 1);
 	REQUIRE(ds.isFull() == true);
 }
+
+// 10.1-3. A 10.2. ábrán bemutatott modell felhasználásával szemléltessük a Sorba(S, 4),
+// Sorba(S, 1), Sorba(S, 3), Sorb ´ol(S), Sorba(S, 8) és Sorb ´ol(S) m˝uveletek mindegyikének
+// a végrehajtását, ha a sort a S[1 . . 6] tömbben tároljuk, és a sor kezdetben üres.
+
+TEST_CASE("Queue 01")
+{
+	Queue q;
+	REQUIRE(q.isEmpty() == true);
+	q.pushBack(1);
+	q.pushBack(2);
+	q.pushBack(3);
+	q.pushBack(4);
+	REQUIRE(q.isEmpty() == false);
+	q.pushBack(5);
+	q.pushBack(6);
+	q.pushBack(7);
+}
+
+TEST_CASE("Queue 02")
+{
+	Queue q;
+	REQUIRE(q.isEmpty() == true);
+	q.pushBack(1);
+	q.pushBack(2);
+	REQUIRE(q.popFront() == 1);
+	REQUIRE(q.popFront() == 2);
+	REQUIRE(q.isEmpty() == true);
+	REQUIRE(q.popFront() == -1);
+	REQUIRE(q.isEmpty() == true);
+}
+
+TEST_CASE("Queue 03")
+{
+	Queue q;
+	q.pushBack(1);
+	q.pushBack(2);
+	q.pushBack(3);
+	q.pushBack(4);
+	q.pushBack(5);
+	q.pushBack(6);
+	REQUIRE(q.popFront() == 1);
+	REQUIRE(q.popFront() == 2);
+	REQUIRE(q.popFront() == 3);
+	REQUIRE(q.popFront() == 4);
+	q.pushBack(7);
+	q.pushBack(8);
+	q.pushBack(9);
+	q.pushBack(10);
+	REQUIRE(q.popFront() == 5);
+	REQUIRE(q.popFront() == 6);
+	REQUIRE(q.popFront() == 7);
+	REQUIRE(q.popFront() == 8);
+	q.pushBack(11);
+	q.pushBack(12);
+	q.pushBack(13);
+	q.pushBack(14);
+	REQUIRE(q.popFront() == 9);
+	REQUIRE(q.popFront() == 10);
+	REQUIRE(q.popFront() == 11);
+	REQUIRE(q.popFront() == 12);
+	q.pushBack(15);
+	q.pushBack(16);
+	q.pushBack(17);
+	q.pushBack(18);
+	REQUIRE(q.popFront() == 13);
+	REQUIRE(q.popFront() == 14);
+	REQUIRE(q.popFront() == 15);
+	REQUIRE(q.popFront() == 16);
+	q.pushBack(19);
+	q.pushBack(20);
+	q.pushBack(21);
+	q.pushBack(22);
+}
+
