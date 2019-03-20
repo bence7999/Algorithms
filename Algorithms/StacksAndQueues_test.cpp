@@ -279,3 +279,108 @@ TEST_CASE("Queue 03")
 	q.pushBack(22);
 }
 
+// 10.1-5. Amint láttuk, a veremnek csak az egyik végén lehet elemet beszúrni és törölni, a
+// sornak pedig az egyik végén lehet elemet beszúrni és a másik végén lehet törölni. Ezzel
+// szemben a kétvég˝u sor mindkét végén lehet elemet beszúrni is, és törölni is. Írjunk négy
+// olyan O(1) idej˝u eljárást, amelyek megvalósítják a beszúrás és törlés m˝uveleteit egy tömbbel
+// ábrázolt kétvég˝u sor mindkét végén.
+
+TEST_CASE("Deque 01")
+{
+	Deque dq;
+	REQUIRE(dq.isEmpty() == true);
+	dq.pushBack(1);
+	dq.pushFront(2);
+	dq.pushBack(3);
+	dq.pushFront(4);
+	REQUIRE(dq.isEmpty() == false);
+	REQUIRE(dq.popBack() == 3);
+	REQUIRE(dq.popFront() == 4);
+	REQUIRE(dq.popBack() == 1);
+	REQUIRE(dq.popFront() == 2);
+	REQUIRE(dq.isEmpty() == true);
+}
+
+TEST_CASE("Deque 02")
+{
+	Deque dq;
+	REQUIRE(dq.isEmpty() == true);
+	REQUIRE(dq.popBack() == -1);
+	REQUIRE(dq.popFront() == -1);
+	dq.pushBack(1);
+	REQUIRE(dq.isEmpty() == false);
+	REQUIRE(dq.popFront() == 1);
+	REQUIRE(dq.isEmpty() == true);
+	dq.pushFront(1);
+	REQUIRE(dq.isEmpty() == false);
+	REQUIRE(dq.popBack() == 1);
+}
+
+TEST_CASE("Deque 03")
+{
+	Deque dq;
+	REQUIRE(dq.isEmpty() == true);
+	dq.pushBack(1);
+	dq.pushBack(2);
+	dq.pushBack(3);
+	dq.pushBack(4);
+	dq.pushBack(5);
+	dq.pushBack(6);
+	REQUIRE(dq.popFront() == 1);
+	REQUIRE(dq.popFront() == 2);
+	REQUIRE(dq.popFront() == 3);
+	REQUIRE(dq.popFront() == 4);
+	dq.pushBack(7);
+	dq.pushBack(8);
+	dq.pushBack(9);
+	dq.pushBack(10);
+	REQUIRE(dq.popFront() == 5);
+	REQUIRE(dq.popFront() == 6);
+	REQUIRE(dq.popFront() == 7);
+	REQUIRE(dq.popFront() == 8);
+	dq.pushBack(11);
+	dq.pushBack(12);
+	dq.pushBack(13);
+	dq.pushBack(14);
+	REQUIRE(dq.popFront() == 9);
+	REQUIRE(dq.popFront() == 10);
+	REQUIRE(dq.popFront() == 11);
+	REQUIRE(dq.popFront() == 12);
+	REQUIRE(dq.popFront() == 13);
+	REQUIRE(dq.popFront() == 14);
+	REQUIRE(dq.isEmpty() == true);
+	dq.pushFront(13);
+	dq.pushFront(14);
+	dq.pushFront(15);
+	dq.pushFront(16);
+	dq.pushFront(17);
+	dq.pushFront(18);
+	REQUIRE(dq.popBack() == 13);
+	REQUIRE(dq.popBack() == 14);
+	REQUIRE(dq.popBack() == 15);
+	REQUIRE(dq.popBack() == 16);
+	dq.pushFront(19);
+	dq.pushFront(20);
+	dq.pushFront(21);
+	dq.pushFront(22);
+	REQUIRE(dq.popBack() == 17);
+	REQUIRE(dq.popBack() == 18);
+	REQUIRE(dq.popBack() == 19);
+	REQUIRE(dq.popBack() == 20);
+	dq.pushFront(23);
+	dq.pushFront(24);
+	dq.pushFront(25);
+	dq.pushFront(26);
+	REQUIRE(dq.popBack() == 21);
+	REQUIRE(dq.popBack() == 22);
+	REQUIRE(dq.popBack() == 23);
+	REQUIRE(dq.popBack() == 24);
+	dq.pushFront(27);
+	dq.pushFront(28);
+	dq.pushFront(29);
+	dq.pushFront(30);
+	REQUIRE(dq.popBack() == 25);
+	REQUIRE(dq.popBack() == 26);
+	REQUIRE(dq.popBack() == 27);
+	REQUIRE(dq.popBack() == 28);
+}

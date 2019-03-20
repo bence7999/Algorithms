@@ -50,7 +50,6 @@ private:
 	std::vector<int> queue;
 	std::vector<int>::iterator front;
 	std::vector<int>::iterator back;
-	bool isFull();
 	int length = 0;
 public:
 	Queue();
@@ -62,10 +61,22 @@ public:
 // Task 04
 
 // Task 05
-void pushDeqFront(int _deq[], int _element);
-void pushDeqBack(int _deq[], int _element);
-int popDeqFront(int _deq[]);
-int popDeqBack(int _deq[]);
+
+class Deque
+{
+private:
+	std::vector<int> deque;
+	std::vector<int>::iterator front;
+	std::vector<int>::iterator back;
+	int length = 0;
+public:
+	Deque();
+	void pushFront(int _element);
+	void pushBack(int _element);
+	int popFront();
+	int popBack();
+	bool isEmpty();
+};
 
 // Task 06
 

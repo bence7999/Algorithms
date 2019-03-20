@@ -178,7 +178,7 @@ Queue::Queue()
 
 void Queue::pushBack(int _element) 
 {
-	if (isFull())
+	if (length == MAX01)
 	{
 		// overFlow
 	}
@@ -220,107 +220,106 @@ bool Queue::isEmpty()
 		return false;
 }
 
-bool Queue::isFull()
-{
-	if (length == MAX01)
-		return true;
-	else
-		return false;
-}
-
 // 10.1-4. Írjuk meg a Sorba és a Sorb ´ol m˝uveleteket úgy, hogy szerepeljen bennük az alulcsordulás
 // és túlcsordulás vizsgálata.
 
-// 10.1-5. Amint láttuk, a veremnek csak az egyik végén lehet elemet beszúrni és törölni, a
-// sornak pedig az egyik végén lehet elemet beszúrni és a másik végén lehet törölni. Ezzel
-// szemben a kétvég˝u sor mindkét végén lehet elemet beszúrni is, és törölni is. Írjunk négy
-// olyan O(1) idej˝u eljárást, amelyek megvalósítják a beszúrás és törlés m˝uveleteit egy tömbbel
-// ábrázolt kétvég˝u sor mindkét végén.
+// Task 05
 
-int _headDeQueue = 0;
-int _tailDeQueue = 0;
-int _sizeDeQueue = 0;
-
-void pushDeqFront(int _deq[], int _element) 
+Deque::Deque()
 {
-	if (_sizeDeQueue == MAX01)
+	deque = std::vector<int>(MAX01);
+	front = deque.begin();
+	back = deque.begin();
+}
+
+void Deque::pushFront(int _element) 
+{
+	if (length == MAX01)
 	{
 		// overFlow
 	}
 	else
 	{
-		_deq[_headDeQueue] = _element;
-		if (_sizeDeQueue == 0 && _tailDeQueue == 0)
+		if (front != deque.begin())
 		{
-			_headDeQueue = MAX01 - 1;
-			_tailDeQueue++;
+			*(--front) = _element;
 		}
-		else if (_headDeQueue == 0)
-			_headDeQueue = MAX01 - 1;
 		else
-			_headDeQueue--;
-		_sizeDeQueue++;
+		{
+			front = deque.end() - 1;
+			*front = _element;
+		}
+		length++;
 	}
 }
 
-void pushDeqBack(int _deq[], int _element)
+void Deque::pushBack(int _element)
 {
-	if (_sizeDeQueue == MAX01)
+	if (length == MAX01)
 	{
 		// overFlow
 	}
 	else
 	{
-		_deq[_tailDeQueue] = _element;
-		if (_sizeDeQueue == 0 && _headDeQueue == 0)
-		{
-			_tailDeQueue++;
-			_headDeQueue = MAX01 - 1;
-		}
-		else if (_tailDeQueue == MAX01 - 1)
-			_tailDeQueue = 0;
-		else
-			_tailDeQueue++;
-		_sizeDeQueue++;
+		if (back == deque.end())
+			back = deque.begin();
+		*back = _element;
+		length++;
+		back++;
 	}
 }
 
-int popDeqFront(int _deq[])
+int Deque::popFront()
 {
-	if (_sizeDeQueue == 0)
+	if (isEmpty())
 	{
 		// underFlow
 		return -1;
 	}
 	else
 	{
-		int retVal = _deq[_headDeQueue];
-		if (_headDeQueue == MAX01 - 1)
-			_headDeQueue = 0;
+
+		int retVal = *front;
+		if (front == (deque.end() - 1))
+			front = deque.begin();
 		else
-			_headDeQueue++;
-		_sizeDeQueue--;
+			front++;
+		length--;
 		return retVal;
 	}
 }
 
-int popDeqBack(int _deq[])
+int Deque::popBack()
 {
-	if (_sizeDeQueue == 0)
+	if (isEmpty())
 	{
 		// underFlow
 		return -1;
 	}
 	else
 	{
-		int retVal = _deq[_tailDeQueue];
-		if (_tailDeQueue == 0)
-			_tailDeQueue = MAX01 - 1;
+		int retVal = -1;
+		if (back != deque.begin())
+		{
+			retVal = *(back - 1);
+			back--;
+		}
 		else
-			_tailDeQueue--;
-		_sizeDeQueue--;
+		{
+			retVal = *(deque.end() - 1);
+			back = (deque.end() - 1);
+		}
+		length--;
 		return retVal;
 	}
+}
+
+bool Deque::isEmpty()
+{
+	if (front == back && length == 0)
+		return true;
+	else
+		return false;
 }
 
 // 10.1-6. Adjuk meg a sor megvalósítását két verem felhasználásával. Elemezzük a sor m˝uveleteinek
