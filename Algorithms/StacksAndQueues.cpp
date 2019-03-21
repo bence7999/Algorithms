@@ -322,6 +322,60 @@ bool Deque::isEmpty()
 		return false;
 }
 
-// 10.1-6. Adjuk meg a sor megvalósítását két verem felhasználásával. Elemezzük a sor m˝uveleteinek
-// a végrehajtási idejét.
+// Task 06
 
+void QueueUsingStack::pushBack(int _element)
+{
+	if (length == MAX01)
+	{
+		// owerFlow
+	}
+	else
+	{
+		forward.push(_element);
+		length++;
+	}
+}
+
+int QueueUsingStack::popFront()
+{
+	if (isEmpty())
+	{
+		// underFlow
+		return -1;
+	}
+	else
+	{
+		this->swap();
+		int ret = backward.pop();
+		this->swap();
+		length--;
+		return ret;
+	}
+}
+
+bool QueueUsingStack::isEmpty()
+{
+	if (length == 0)
+		return true;
+	else
+		return false;
+}
+
+void QueueUsingStack::swap()
+{
+	if (forward.isEmpty())
+	{
+		while (!backward.isEmpty())
+		{
+			forward.push(backward.pop());
+		}
+	}
+	else
+	{
+		while (!forward.isEmpty())
+		{
+			backward.push(forward.pop());
+		}
+	}
+}

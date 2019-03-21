@@ -80,4 +80,15 @@ public:
 
 // Task 06
 
-
+class QueueUsingStack
+{
+private:
+	Stack forward;
+	Stack backward;
+	int length = 0;
+	void swap();
+public:
+	void pushBack(int _element);
+	int popFront();
+	bool isEmpty();
+};

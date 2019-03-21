@@ -384,3 +384,76 @@ TEST_CASE("Deque 03")
 	REQUIRE(dq.popBack() == 27);
 	REQUIRE(dq.popBack() == 28);
 }
+
+// 10.1-6. Adjuk meg a sor megvalósítását két verem felhasználásával. Elemezzük a sor m˝uveleteinek
+// a végrehajtási idejét.
+
+TEST_CASE("QueueUsingStack 01")
+{
+	QueueUsingStack qs;
+	REQUIRE(qs.isEmpty() == true);
+	qs.pushBack(1);
+	qs.pushBack(2);
+	qs.pushBack(3);
+	qs.pushBack(4);
+	REQUIRE(qs.isEmpty() == false);
+	qs.pushBack(5);
+	qs.pushBack(6);
+	qs.pushBack(7);
+}
+
+TEST_CASE("QueueUsingStack 02")
+{
+	QueueUsingStack qs;
+	REQUIRE(qs.isEmpty() == true);
+	qs.pushBack(1);
+	qs.pushBack(2);
+	REQUIRE(qs.popFront() == 1);
+	REQUIRE(qs.popFront() == 2);
+	REQUIRE(qs.isEmpty() == true);
+	REQUIRE(qs.popFront() == -1);
+	REQUIRE(qs.isEmpty() == true);
+}
+
+TEST_CASE("QueueUsingStack 03")
+{
+	QueueUsingStack qs;
+	qs.pushBack(1);
+	qs.pushBack(2);
+	qs.pushBack(3);
+	qs.pushBack(4);
+	qs.pushBack(5);
+	qs.pushBack(6);
+	REQUIRE(qs.popFront() == 1);
+	REQUIRE(qs.popFront() == 2);
+	REQUIRE(qs.popFront() == 3);
+	REQUIRE(qs.popFront() == 4);
+	qs.pushBack(7);
+	qs.pushBack(8);
+	qs.pushBack(9);
+	qs.pushBack(10);
+	REQUIRE(qs.popFront() == 5);
+	REQUIRE(qs.popFront() == 6);
+	REQUIRE(qs.popFront() == 7);
+	REQUIRE(qs.popFront() == 8);
+	qs.pushBack(11);
+	qs.pushBack(12);
+	qs.pushBack(13);
+	qs.pushBack(14);
+	REQUIRE(qs.popFront() == 9);
+	REQUIRE(qs.popFront() == 10);
+	REQUIRE(qs.popFront() == 11);
+	REQUIRE(qs.popFront() == 12);
+	qs.pushBack(15);
+	qs.pushBack(16);
+	qs.pushBack(17);
+	qs.pushBack(18);
+	REQUIRE(qs.popFront() == 13);
+	REQUIRE(qs.popFront() == 14);
+	REQUIRE(qs.popFront() == 15);
+	REQUIRE(qs.popFront() == 16);
+	qs.pushBack(19);
+	qs.pushBack(20);
+	qs.pushBack(21);
+	qs.pushBack(22);
+}
