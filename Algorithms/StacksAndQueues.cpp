@@ -184,11 +184,11 @@ void Queue::pushBack(int _element)
 	}
 	else
 	{
-		if (back == queue.end())
-			back = queue.begin();
 		*back = _element;
 		length++;
 		back++;
+		if (back == queue.end())
+			back = queue.begin();
 	}
 	
 }
@@ -378,4 +378,109 @@ void QueueUsingStack::swap()
 			backward.push(forward.pop());
 		}
 	}
+}
+
+// Task 07
+
+bool StackUsingQueue::isEmpty()
+{
+	if (first.isEmpty())
+		return true;
+	else
+		return false;
+}
+
+void StackUsingQueue::push(int _element)
+{
+	first.pushBack(_element);
+	if(stackTop() == _element)
+		head = _element;
+}
+
+int StackUsingQueue::pop()
+{
+	if (first.isEmpty())
+	{
+		// under flow
+		return -1;
+	}
+	else
+	{
+		return popStackTop();
+	}
+	return -1;
+}
+
+int StackUsingQueue::top()
+{
+	return head;
+}
+
+int StackUsingQueue::popStackTop()
+{
+	int accumulator = first.popFront();
+	while (true)
+	{	
+		int tmp = first.popFront();
+		if (tmp != -1)
+		{
+			second.pushBack(accumulator);
+			accumulator = tmp;
+		}
+		else
+			break;
+	}
+	int tmpHead = -1;
+	int top = second.popFront();
+	while (true)
+	{
+		if (top != -1)
+		{
+			first.pushBack(top);
+			tmpHead = top;
+			top = second.popFront();
+		}
+		else
+		{
+			head = tmpHead;
+			break;
+		}
+	}
+	return accumulator;
+}
+
+int StackUsingQueue::stackTop()
+{
+	int top = first.popFront();
+	while (true)
+	{
+		int tmp = first.popFront();
+		if (top != -1)
+		{
+			second.pushBack(top);
+			top = tmp;
+		}
+		else
+		{
+			second.pushBack(tmp);
+			break;
+		}
+	}
+	int tmpHead = -1;
+	int tmpTop = second.popFront();
+	while (true)
+	{
+		if (tmpTop != -1)
+		{
+			first.pushBack(tmpTop);
+			tmpHead = tmpTop;
+			tmpTop = second.popFront();
+		}
+		else
+		{
+			head = tmpHead;
+			break;
+		}
+	}
+	return top;
 }

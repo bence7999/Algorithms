@@ -92,3 +92,19 @@ public:
 	int popFront();
 	bool isEmpty();
 };
+
+// Task 07
+
+class StackUsingQueue
+{
+	Queue first;
+	Queue second;
+	int head = -1;
+	int popStackTop();
+	int stackTop();
+public:
+	bool isEmpty();
+	void push(int _element);
+	int pop();
+	int top();
+};

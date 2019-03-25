@@ -279,6 +279,29 @@ TEST_CASE("Queue 03")
 	q.pushBack(22);
 }
 
+TEST_CASE("Queue 04")
+{
+	Queue q;
+
+	REQUIRE(q.isEmpty() == true);
+	REQUIRE(q.popFront() == -1);
+	q.pushBack(1);
+	q.pushBack(2);
+	q.pushBack(3);
+	q.pushBack(4);
+	q.pushBack(5);
+	q.pushBack(6);
+	REQUIRE(q.isEmpty() == false);
+	REQUIRE(q.popFront() == 1);
+	REQUIRE(q.popFront() == 2);
+	REQUIRE(q.popFront() == 3);
+	REQUIRE(q.popFront() == 4);
+	REQUIRE(q.popFront() == 5);
+	REQUIRE(q.popFront() == 6);
+	REQUIRE(q.isEmpty() == true);
+	REQUIRE(q.popFront() == -1);
+}
+
 // 10.1-5. Amint láttuk, a veremnek csak az egyik végén lehet elemet beszúrni és törölni, a
 // sornak pedig az egyik végén lehet elemet beszúrni és a másik végén lehet törölni. Ezzel
 // szemben a kétvég˝u sor mindkét végén lehet elemet beszúrni is, és törölni is. Írjunk négy
@@ -456,4 +479,88 @@ TEST_CASE("QueueUsingStack 03")
 	qs.pushBack(20);
 	qs.pushBack(21);
 	qs.pushBack(22);
+}
+
+TEST_CASE("QueueUsingStack 04")
+{
+	QueueUsingStack qs;
+
+	REQUIRE(qs.isEmpty() == true);
+	REQUIRE(qs.popFront() == -1);
+	qs.pushBack(1);
+	qs.pushBack(2);
+	qs.pushBack(3);
+	qs.pushBack(4);
+	qs.pushBack(5);
+	qs.pushBack(6);
+	REQUIRE(qs.isEmpty() == false);
+	REQUIRE(qs.popFront() == 1);
+	REQUIRE(qs.popFront() == 2);
+	REQUIRE(qs.popFront() == 3);
+	REQUIRE(qs.popFront() == 4);
+	REQUIRE(qs.popFront() == 5);
+	REQUIRE(qs.popFront() == 6);
+	REQUIRE(qs.isEmpty() == true);
+	REQUIRE(qs.popFront() == -1);
+}
+
+// 10.1-7. Adjuk meg a verem megvalósítását két sor felhasználásával. Elemezzük a verem
+// m˝uveleteinek végrehajtási idejét.
+
+TEST_CASE("StackUsingQueue 01")
+{
+	StackUsingQueue sq;
+	REQUIRE(sq.isEmpty() == true);
+	sq.push(4);
+	sq.push(1);
+	sq.push(3);
+	REQUIRE(sq.top() == 3);
+	REQUIRE(sq.pop() == 3);
+	REQUIRE(sq.top() == 1);
+	sq.push(8);
+	REQUIRE(sq.pop() == 8);
+	REQUIRE(sq.isEmpty() == false);
+	sq.push(6);
+	sq.push(9);
+	sq.push(15);
+	REQUIRE(sq.top() == 15);
+	REQUIRE(sq.isEmpty() == false);
+	sq.push(1);
+	sq.push(10);
+	REQUIRE(sq.top() == 1);
+}
+
+TEST_CASE("StackUsingQueue 02")
+{
+	StackUsingQueue sq;
+	REQUIRE(sq.pop() == -1);
+	REQUIRE(sq.top() == -1);
+	REQUIRE(sq.isEmpty() == true);
+
+	sq.push(1);
+	REQUIRE(sq.top() == 1);
+	REQUIRE(sq.isEmpty() == false);
+
+	REQUIRE(sq.pop() == 1);
+	REQUIRE(sq.top() == -1);
+	REQUIRE(sq.isEmpty() == true);
+}
+
+TEST_CASE("StackUsingQueue 03")
+{
+	StackUsingQueue sq;
+	sq.push(1);
+	sq.push(2);
+	sq.push(3);
+	sq.push(4);
+	sq.push(5);
+	sq.push(6);
+	REQUIRE(sq.top() == 6);
+	sq.push(7);
+	sq.push(8);
+	sq.push(9);
+	REQUIRE(sq.top() == 6);
+	REQUIRE(sq.pop() == 6);
+	sq.push(7);
+	REQUIRE(sq.top() == 7);
 }
