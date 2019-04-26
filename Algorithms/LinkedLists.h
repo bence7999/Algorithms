@@ -41,3 +41,14 @@ public:
 	int pop();
 	int top();
 };
+
+// Task 02
+
+class QueueUsingLinedList
+{
+	LinkedList ll;
+public:
+	void pushBack(int _data);
+	int popFront();
+	bool isEmpty();
+};

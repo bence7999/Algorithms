@@ -192,3 +192,27 @@ int StackUsingLinkedList::top()
 	else
 		return -1; // stack is empty
 }
+
+// Task 03
+
+void QueueUsingLinedList::pushBack(int _data)
+{
+	ll.add(_data);
+}
+
+int QueueUsingLinedList::popFront()
+{
+	if (!isEmpty())
+	{
+		return ll.removeFront(ll.head->getData());
+	}
+	return -1;
+}
+
+bool QueueUsingLinedList::isEmpty()
+{
+	if (ll.head == nullptr)
+		return true;
+	else
+		return false;
+}
