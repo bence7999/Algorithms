@@ -57,7 +57,7 @@ TEST_CASE("LinkedList remove")
 
 TEST_CASE("StackUsingLinkedList 01")
 {
-	/*StackUsingLinkedList s;
+	StackUsingLinkedList s;
 	REQUIRE(s.isEmpty() == true);
 	s.push(4);
 	s.push(1);
@@ -75,12 +75,12 @@ TEST_CASE("StackUsingLinkedList 01")
 	REQUIRE(s.isEmpty() == false);
 	s.push(1);
 	s.push(10);
-	REQUIRE(s.top() == 1);*/
+	REQUIRE(s.top() == 1);
 }
 
 TEST_CASE("StackUsingLinkedList 02")
 {
-	/*StackUsingLinkedList s;
+	StackUsingLinkedList s;
 	REQUIRE(s.pop() == -1);
 	REQUIRE(s.top() == -1);
 	REQUIRE(s.isEmpty() == true);
@@ -91,12 +91,12 @@ TEST_CASE("StackUsingLinkedList 02")
 
 	REQUIRE(s.pop() == 1);
 	REQUIRE(s.top() == -1);
-	REQUIRE(s.isEmpty() == true);*/
+	REQUIRE(s.isEmpty() == true);
 }
 
 TEST_CASE("StackUsingLinkedList 03")
 {
-	/*StackUsingLinkedList s;
+	StackUsingLinkedList s;
 	s.push(1);
 	s.push(2);
 	s.push(3);
@@ -110,5 +110,5 @@ TEST_CASE("StackUsingLinkedList 03")
 	REQUIRE(s.top() == 6);
 	REQUIRE(s.pop() == 6);
 	s.push(7);
-	REQUIRE(s.top() == 7);*/
+	REQUIRE(s.top() == 7);
 }
