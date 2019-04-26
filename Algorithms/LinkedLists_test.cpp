@@ -112,3 +112,99 @@ TEST_CASE("StackUsingLinkedList 03")
 	s.push(7);
 	REQUIRE(s.top() == 7);
 }
+
+// 10.2 - 3. Valósítsuk meg a sort egyszer˝u láncolt listával.A Sorba és Sorb ´ol m˝uveletek végrehajtási
+// ideje maradjon O(1).
+
+TEST_CASE("QueueUsingLinedList 01")
+{
+	QueueUsingLinedList q;
+	REQUIRE(q.isEmpty() == true);
+	q.pushBack(1);
+	q.pushBack(2);
+	q.pushBack(3);
+	q.pushBack(4);
+	REQUIRE(q.isEmpty() == false);
+	q.pushBack(5);
+	q.pushBack(6);
+	q.pushBack(7);
+}
+
+TEST_CASE("QueueUsingLinedList 02")
+{
+	QueueUsingLinedList q;
+	REQUIRE(q.isEmpty() == true);
+	q.pushBack(1);
+	q.pushBack(2);
+	REQUIRE(q.popFront() == 1);
+	REQUIRE(q.popFront() == 2);
+	REQUIRE(q.isEmpty() == true);
+	REQUIRE(q.popFront() == -1);
+	REQUIRE(q.isEmpty() == true);
+}
+
+TEST_CASE("QueueUsingLinedList 03")
+{
+	QueueUsingLinedList q;
+	q.pushBack(1);
+	q.pushBack(2);
+	q.pushBack(3);
+	q.pushBack(4);
+	q.pushBack(5);
+	q.pushBack(6);
+	REQUIRE(q.popFront() == 1);
+	REQUIRE(q.popFront() == 2);
+	REQUIRE(q.popFront() == 3);
+	REQUIRE(q.popFront() == 4);
+	q.pushBack(7);
+	q.pushBack(8);
+	q.pushBack(9);
+	q.pushBack(10);
+	REQUIRE(q.popFront() == 5);
+	REQUIRE(q.popFront() == 6);
+	REQUIRE(q.popFront() == 7);
+	REQUIRE(q.popFront() == 8);
+	q.pushBack(11);
+	q.pushBack(12);
+	q.pushBack(13);
+	q.pushBack(14);
+	REQUIRE(q.popFront() == 9);
+	REQUIRE(q.popFront() == 10);
+	REQUIRE(q.popFront() == 11);
+	REQUIRE(q.popFront() == 12);
+	q.pushBack(15);
+	q.pushBack(16);
+	q.pushBack(17);
+	q.pushBack(18);
+	REQUIRE(q.popFront() == 13);
+	REQUIRE(q.popFront() == 14);
+	REQUIRE(q.popFront() == 15);
+	REQUIRE(q.popFront() == 16);
+	q.pushBack(19);
+	q.pushBack(20);
+	q.pushBack(21);
+	q.pushBack(22);
+}
+
+TEST_CASE("QueueUsingLinedList 04")
+{
+	QueueUsingLinedList q;
+
+	REQUIRE(q.isEmpty() == true);
+	REQUIRE(q.popFront() == -1);
+	q.pushBack(1);
+	q.pushBack(2);
+	q.pushBack(3);
+	q.pushBack(4);
+	q.pushBack(5);
+	q.pushBack(6);
+	REQUIRE(q.isEmpty() == false);
+	REQUIRE(q.popFront() == 1);
+	REQUIRE(q.popFront() == 2);
+	REQUIRE(q.popFront() == 3);
+	REQUIRE(q.popFront() == 4);
+	REQUIRE(q.popFront() == 5);
+	REQUIRE(q.popFront() == 6);
+	REQUIRE(q.isEmpty() == true);
+	REQUIRE(q.popFront() == -1);
+}
