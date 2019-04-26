@@ -33,9 +33,11 @@ public:
 
 class StackUsingLinkedList
 {
+	LinkedList ll;
+	int length = 0;
 public:
-	/*bool isEmpty();
+	bool isEmpty();
 	void push(int _element);
 	int pop();
-	int top();*/
+	int top();
 };

@@ -1,5 +1,7 @@
 #include "LinkedLists.h"
 
+#define MAX01 6
+
 // Task 01
 
 int LinkedList::counter = 0;
@@ -141,22 +143,52 @@ bool LinkedList::isEmpty()
 
 // Task 02
 
-/*bool StackUsingLinkedList::isEmpty()
+bool StackUsingLinkedList::isEmpty()
 {
-
+	if (ll.isEmpty())
+		return true;
+	else
+		return false;
 }
 
 void StackUsingLinkedList::push(int _element)
 {
-
+	if (length < MAX01)
+	{
+		ll.add(_element);
+		length++;
+	}
+	else
+	{
+		// overflow
+	}
 }
 
 int StackUsingLinkedList::pop()
 {
-
+	if (! ll.isEmpty())
+	{
+		length--;
+		return ll.removeBack(top());
+	}
+	else
+	{
+		// underflow
+		return -1;
+	}
 }
 
 int StackUsingLinkedList::top()
 {
-
-}*/
+	if (!ll.isEmpty())
+	{
+		Node* tmp = ll.head;
+		while (tmp->next != nullptr)
+		{
+			tmp = tmp->next;
+		}
+		return tmp->getData();
+	}
+	else
+		return -1; // stack is empty
+}
