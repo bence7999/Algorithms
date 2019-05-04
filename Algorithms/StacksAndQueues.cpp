@@ -4,7 +4,7 @@
 
 Stack::Stack()
 {
-	stack = std::vector<int>(MAX01);
+	stack = std::vector<int> (MAX01);
 	head = stack.begin();
 }
 
@@ -21,7 +21,7 @@ void Stack::push(int _element)
 	if (head != stack.end())
 	{
 		*head = _element;
-		head++;
+		++head;
 	}
 	else
 	{
@@ -36,7 +36,7 @@ int Stack::pop()
 	else
 	{
 		int _localHead = *(head-1);
-		head--; 
+		--head; 
 		return _localHead;
 	}
 }
@@ -91,7 +91,7 @@ void DoubleStack::pushFirst(int _element)
 	if (!isFull())
 	{
 		*headFirst = _element;
-		headFirst++;
+		++headFirst;
 	}
 	else
 	{
@@ -104,7 +104,7 @@ void DoubleStack::pushSecond(int _element)
 {
 	if (!isFull())
 	{
-		headSecond--;
+		--headSecond;
 		*headSecond = _element;
 	}
 	else
@@ -118,7 +118,7 @@ int DoubleStack::popFirst()
 	if (!isEmptyFirst())
 	{
 		int retVal = *(headFirst-1);
-		headFirst--;
+		--headFirst;
 		return retVal;
 	}
 	else
@@ -133,7 +133,7 @@ int DoubleStack::popSecond()
 	if (!isEmptySecond())
 	{
 		int retVal = *headSecond;
-		headSecond++;
+		++headSecond;
 		return retVal;
 	}
 	else
@@ -186,7 +186,7 @@ void Queue::pushBack(int _element)
 	{
 		*back = _element;
 		length++;
-		back++;
+		++back;
 		if (back == queue.end())
 			back = queue.begin();
 	}
@@ -206,7 +206,7 @@ int Queue::popFront()
 		if (front == (queue.end() - 1))
 			front = queue.begin();
 		else
-			front++;
+			++front;
 		length--;
 		return retVal;
 	}
@@ -265,7 +265,7 @@ void Deque::pushBack(int _element)
 			back = deque.begin();
 		*back = _element;
 		length++;
-		back++;
+		++back;
 	}
 }
 
@@ -283,7 +283,7 @@ int Deque::popFront()
 		if (front == (deque.end() - 1))
 			front = deque.begin();
 		else
-			front++;
+			++front;
 		length--;
 		return retVal;
 	}
@@ -302,7 +302,7 @@ int Deque::popBack()
 		if (back != deque.begin())
 		{
 			retVal = *(back - 1);
-			back--;
+			--back;
 		}
 		else
 		{
