@@ -5,51 +5,66 @@
 // 10.2-1. Megvalósítható-e a dinamikus halmazokra értelmezett Besz ´ur m˝uvelet egyszeresen
 // láncolt listákra O(1) id ˝oben ? Mi a helyzet a T¨or¨ol m˝uvelettel ?
 
-TEST_CASE("LinketList add")
+TEST_CASE("DoublyLinkedList add")
 {
-	REQUIRE(LinkedList::counter == 0);
-	LinkedList ll;
+	REQUIRE(DoublyLinkedList::counter == 0);
+	DoublyLinkedList ll;
+	REQUIRE(ll.head == nullptr);
 	REQUIRE(ll.isEmpty() == true);
 	ll.add(0);
 	REQUIRE(ll.isEmpty() == false);
 	REQUIRE(ll.head->getData() == 0);
+	REQUIRE(ll.head->next == nullptr);
+	REQUIRE(ll.head->prev == nullptr);
 	ll.add(1);
 	ll.add(2);
 	ll.add(3);
 	REQUIRE(ll.isEmpty() == false);
-	REQUIRE(ll.head->getData() == 0);
+	REQUIRE(ll.head->getData() == 3);
 	Node* tmp = ll.head;
-	tmp = tmp->next;
-	REQUIRE(tmp->getData() == 1);
 	tmp = tmp->next;
 	REQUIRE(tmp->getData() == 2);
 	tmp = tmp->next;
-	REQUIRE(tmp->getData() == 3);
+	REQUIRE(tmp->getData() == 1);
+	tmp = tmp->next;
+	REQUIRE(tmp->getData() == 0);
 }
 
-TEST_CASE("LinkedList remove")
+TEST_CASE("DoublyLinkedList remove")
 {
-	REQUIRE(LinkedList::counter == 0);
-	LinkedList ll;
+	REQUIRE(DoublyLinkedList::counter == 0);
+	DoublyLinkedList ll;
 	ll.add(0);
 	REQUIRE(ll.isEmpty() == false);
-	REQUIRE(ll.remove(0) == 0);
+	ll.remove(ll.search(0));
 	REQUIRE(ll.isEmpty() == true);
 	ll.add(0);
 	REQUIRE(ll.isEmpty() == false);
 	ll.add(1);
-	REQUIRE(ll.remove(1) == 1);
+	ll.remove(ll.search(1));
 	REQUIRE(ll.isEmpty() == false);
 	ll.add(1);
 	ll.add(2);
 	ll.add(3);
 	ll.add(4);
-	REQUIRE(ll.remove(3) == 3);
-	REQUIRE(ll.remove(2) == 2);
-	REQUIRE(ll.remove(1) == 1);
-	REQUIRE(ll.remove(4) == 4);
-	REQUIRE(ll.remove(0) == 0);
+	ll.remove(ll.search(3));
+	ll.remove(ll.search(2));
+	ll.remove(ll.search(1));
+	ll.remove(ll.search(4));
+	ll.remove(ll.search(0));
 	REQUIRE(ll.isEmpty() == true);
+}
+
+TEST_CASE("DoublyLinkedList search")
+{
+	REQUIRE(DoublyLinkedList::counter == 0);
+	DoublyLinkedList ll;
+	REQUIRE(ll.search(0) == nullptr);
+	ll.add(0);
+	REQUIRE(ll.search(0)->getData() == 0);
+	REQUIRE(ll.search(1) == nullptr);
+	ll.add(1);
+	REQUIRE(ll.search(1)->getData() == 1);
 }
 
 // 10.2-2. Valósítsuk meg a vermet egyszer˝u láncolt listával. A Verembe és Veremb ˝ol m˝uveletek
@@ -208,3 +223,9 @@ TEST_CASE("QueueUsingLinedList 04")
 	REQUIRE(q.isEmpty() == true);
 	REQUIRE(q.popFront() == -1);
 }
+
+
+// 10.2 - 4. Amint láttuk, a List´aban - keres eljárás az iteráció minden lépésében két vizsgálatot
+// végez : ellen ˝orzi az x  nil[L], valamint a kulcs[x]  k feltétel teljesülését.Adjuk meg,
+//	hogyan lehetne az x  nil[L] vizsgálatot kiküszöbölni a ciklusból.
+

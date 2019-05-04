@@ -8,21 +8,20 @@ class Node
 {
 	int data;
 public:
-	Node(int _data);
+	explicit Node(int _data);
 	~Node();
-	Node* next;
+	Node* next = nullptr;
+	Node* prev = nullptr;
 	int getData();
 };
 
-class LinkedList
+class DoublyLinkedList
 {
 public:
-	~LinkedList();
+	~DoublyLinkedList();
 	Node* head = nullptr;
 	void add(int _data);
-	int remove(int _data);
-	int removeFront(int _data);
-	int removeBack(int _data);
+	void remove(Node* node);
 	Node* search(int _data);
 	bool isEmpty();
 	
@@ -33,7 +32,7 @@ public:
 
 class StackUsingLinkedList
 {
-	LinkedList ll;
+	DoublyLinkedList ll;
 	int length = 0;
 public:
 	bool isEmpty();
@@ -42,13 +41,17 @@ public:
 	int top();
 };
 
-// Task 02
+// Task 03
 
 class QueueUsingLinedList
 {
-	LinkedList ll;
+	DoublyLinkedList ll;
+	Node* tail = nullptr;
 public:
 	void pushBack(int _data);
 	int popFront();
 	bool isEmpty();
 };
+
+// Task 04
+
