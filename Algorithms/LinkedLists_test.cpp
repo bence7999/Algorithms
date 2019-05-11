@@ -229,3 +229,67 @@ TEST_CASE("QueueUsingLinedList 04")
 // végez : ellen ˝orzi az x  nil[L], valamint a kulcs[x]  k feltétel teljesülését.Adjuk meg,
 //	hogyan lehetne az x  nil[L] vizsgálatot kiküszöbölni a ciklusból.
 
+// 10.2 - 5. Írjuk meg a Besz ´ur, T¨or¨ol és Keres szótár - m˝uveleteket egyszeresen láncolt ciklikus
+// listára. Mennyi az egyes eljárások futási ideje ?
+
+TEST_CASE("CyclicLinkedList add")
+{
+	CyclicLinkedList cll;
+	REQUIRE(cll.IsEmpty() == true);
+	cll.Add(0);
+	REQUIRE(cll.IsEmpty() == false);
+
+	Node* last = cll.GetLast()->next;
+	REQUIRE(last->getData() == 0);
+	REQUIRE(last == cll.GetLast());
+
+	cll.Add(1);
+	cll.Add(2);
+	cll.Add(3);
+
+	last = cll.GetLast()->next;
+	REQUIRE(last->getData() == 0);
+	last = last->next;
+	REQUIRE(last->getData() == 1);
+	last = last->next;
+	REQUIRE(last->getData() == 2);
+	last = last->next;
+	REQUIRE(last->getData() == 3);
+	REQUIRE(last == cll.GetLast());
+}
+
+TEST_CASE("CyclicLinkedList remove")
+{
+	CyclicLinkedList cll;
+	REQUIRE(cll.IsEmpty() == true);
+	cll.Add(0);
+	REQUIRE(cll.IsEmpty() == false);
+	cll.Remove(cll.Search(0));
+	REQUIRE(cll.IsEmpty() == true);
+	cll.Add(0);
+	REQUIRE(cll.IsEmpty() == false);
+	cll.Add(1);
+	cll.Remove(cll.Search(1));
+	REQUIRE(cll.IsEmpty() == false);
+	cll.Add(1);
+	cll.Add(2);
+	cll.Add(3);
+	cll.Add(4);
+	cll.Remove(cll.Search(3));
+	cll.Remove(cll.Search(2));
+	cll.Remove(cll.Search(1));
+	cll.Remove(cll.Search(4));
+	cll.Remove(cll.Search(0));
+	REQUIRE(cll.IsEmpty() == true);
+}
+
+TEST_CASE("CyclicLinkedList search")
+{
+	CyclicLinkedList cll;
+	REQUIRE(cll.Search(0) == nullptr);
+	cll.Add(0);
+	REQUIRE(cll.Search(0)->getData() == 0);
+	REQUIRE(cll.Search(1) == nullptr);
+	cll.Add(1);
+	REQUIRE(cll.Search(1)->getData() == 1);
+}

@@ -55,3 +55,17 @@ public:
 
 // Task 04
 
+// Task 05
+
+class CyclicLinkedList
+{
+	Node* last = nullptr;
+public:
+	~CyclicLinkedList();
+	void Add(int _data);
+	void Remove(Node* _node);
+	Node* Search(int _data);
+	bool IsEmpty();
+public: // For debug
+	Node* GetLast();
+};

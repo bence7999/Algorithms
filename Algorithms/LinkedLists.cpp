@@ -172,3 +172,83 @@ bool QueueUsingLinedList::isEmpty()
 
 // Task 04
 
+// Task 05
+
+CyclicLinkedList::~CyclicLinkedList()
+{
+
+}
+
+void CyclicLinkedList::Add(int _data)
+{
+	Node* node = new Node(_data);
+	if (IsEmpty())
+	{
+		last = node;
+		node->next = node;
+	}
+	else
+	{
+		node->next = last->next;
+		last->next = node;
+		last = node;
+	}
+}
+
+void CyclicLinkedList::Remove(Node* _node)
+{
+	if (_node->next == _node)
+	{
+		last = nullptr;
+		_node->~Node();
+	}
+	else if(_node == last)
+	{
+		Node* node = _node;
+		while (node->next != _node)
+		{
+			node = node->next;
+		}
+		node->next = last->next;
+		last->~Node();
+		last = node;
+	}
+	else
+	{
+		Node* node = _node;
+		while (node->next != _node)
+		{
+			node = node->next;
+		}
+		node->next = _node->next;
+		_node->~Node();
+	}
+}
+
+Node* CyclicLinkedList::Search(int _data)
+{
+	if (last == nullptr) return nullptr;
+	Node* node = last;
+	while (node->next != last && node->getData() != _data)
+	{
+		node = node->next;
+	}
+
+	if (node->getData() == _data)
+		return node;
+	else
+		return nullptr;
+}
+
+bool CyclicLinkedList::IsEmpty()
+{
+	if (last == nullptr)
+		return true;
+	else
+		return false;
+}
+
+Node* CyclicLinkedList::GetLast()
+{
+	return last;
+}
